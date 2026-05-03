@@ -290,16 +290,16 @@ function update_office(scroll=0){
 
 	var urlAelf = "https://api.aelf.org/v1/" + office + "/" + date + "/" + zone.split(";")[0];
 
-	var contenu_franciscain = null;
+	var contenu_dominicain = null;
 	if (office != "messes") {
     if (zone.startsWith("franciscain")) {
-		  contenu_franciscain = office_du(office, date2slashedDate(date), zone.split(";")[1]);
+		  contenu_dominicain = office_du(office, date2slashedDate(date), zone.split(";")[1]);
 		  urlAelf = "https://api.aelf.org/v1/" + office + "/" + date + "/romain"
 		  zone = "franciscain";
     }
   } else {
     if (zone.startsWith("franciscain")) {
-		  contenu_franciscain = messe_du(date2slashedDate(date));
+		  contenu_dominicain = messe_du(date2slashedDate(date));
 		  urlAelf = "https://api.aelf.org/v1/" + office + "/" + date + "/romain"
 		  zone = "franciscain";
     }
@@ -318,14 +318,14 @@ function update_office(scroll=0){
       }
 
 
-			var html_text = create_office_html(office, date, zone, hymne, invitatoire, result, contenu_franciscain, hymne_selected);
+			var html_text = create_office_html(office, date, zone, hymne, invitatoire, result, contenu_dominicain, hymne_selected);
 
 				$(".office_content").each(function(){$(this).html(html_text.texte)});
         $(".office_titre").each(function(){$(this).html(html_text.titre)});
         $(".office_sommaire").each(function(){$(this).html(html_text.sommaire)});
         //this probably should be done in breviaire.js for consistency
-        if (contenu_franciscain != null){
-          $(".office_biographie").each(function(){$(this).html("<div class='text_part biographie' id='biographie'><h2>" + contenu_franciscain.informations.titre + "</h2>" + contenu_franciscain.biographie + "</div><hr>")});  
+        if (contenu_dominicain != null){
+          $(".office_biographie").each(function(){$(this).html("<div class='text_part biographie' id='biographie'><h2>" + contenu_dominicain.informations.titre + "</h2>" + contenu_dominicain.biographie + "</div><hr>")});  
         }else{
           $(".office_biographie").each(function(){$(this).html("")});
         }
