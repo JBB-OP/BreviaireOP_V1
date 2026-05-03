@@ -70,8 +70,8 @@ const psaumes_invitatoire = {
  "99" : "<span class=\"verse_number\">1</span> Acclamez le Seigne<u>u</u>r, terre entière,<br><span class=\"verse_number\">2</span> servez le Seigne<u>u</u>r dans l'allégresse,<br>venez à lui avec des ch<u>a</u>nts de joie ! <br><br><span class=\"verse_number\">3</span> Reconnaissez que le Seigne<u>u</u>r est Dieu :<br>il nous a faits, et nous s<u>o</u>mmes à lui,<br>nous, son pe<u>u</u>ple, son troupeau. <br><br><span class=\"verse_number\">4</span> Venez dans sa mais<u>o</u>n lui rendre grâce,<br>dans sa demeure chant<u>e</u>r ses louanges ;<br>rendez-lui grâce et béniss<u>e</u>z son nom !<br><br><span class=\"verse_number\">5</span> Oui, le Seigne<u>u</u>r est bon,<br>étern<u>e</u>l est son amour,<br>sa fidélité deme<u>u</u>re d'âge en âge.<br>"
 }
 
-function psaume_from_reference(reference_franciscain){
- let psaume = psaumes[reference_franciscain];
+function psaume_from_reference(reference_dominicain){
+ let psaume = psaumes[reference_dominicain];
  return (psaume == undefined) ? "" : psaume
 }
 
