@@ -24,7 +24,7 @@ function office_disponible(office, date_string){
 }
 
 /*function resume_du(date_string){
-  return {"ligne1": sanctoral[date_string]["titre"], "ligne2": sanctoral[date_string]["sous_titre"] + " - " + sanctoral[date_string]["rang"], "ligne3": "Office Franciscain",  "zone": "franciscain",}
+  return {"ligne1": sanctoral[date_string]["titre"], "ligne2": sanctoral[date_string]["sous_titre"] + " - " + sanctoral[date_string]["rang"], "ligne3": "Office dominicain",  "zone": "dominicain",}
 }*/
 
 function resumes_du(office, date_string){
@@ -34,10 +34,10 @@ function resumes_du(office, date_string){
   while (new_date in sanctoral){
     if (sanctoral[new_date][office] != undefined) {
       if (sanctoral[new_date][office]["oraison"] != "") {
-        offices.push({"ligne1": sanctoral[new_date]["titre"], "ligne2": (sanctoral[new_date]["sous_titre"] != "" ? sanctoral[new_date]["sous_titre"] + " - " : "") + sanctoral[new_date]["rang"], "ligne3": "Office Franciscain",  "zone": "franciscain;" + index, "rang": sanctoral[new_date]["rang"]});
+        offices.push({"ligne1": sanctoral[new_date]["titre"], "ligne2": (sanctoral[new_date]["sous_titre"] != "" ? sanctoral[new_date]["sous_titre"] + " - " : "") + sanctoral[new_date]["rang"], "ligne3": "Office dominicain",  "zone": "dominicain;" + index, "rang": sanctoral[new_date]["rang"]});
       }
     } else if (office == "complies" || office == "sexte" ) {
-      offices.push({"ligne1": sanctoral[new_date]["titre"], "ligne2": (sanctoral[new_date]["sous_titre"] != "" ? sanctoral[new_date]["sous_titre"] + " - " : "") + sanctoral[new_date]["rang"], "ligne3": "Office Franciscain",  "zone": "franciscain;" + index, "rang": sanctoral[new_date]["rang"]});
+      offices.push({"ligne1": sanctoral[new_date]["titre"], "ligne2": (sanctoral[new_date]["sous_titre"] != "" ? sanctoral[new_date]["sous_titre"] + " - " : "") + sanctoral[new_date]["rang"], "ligne3": "Office dominicain",  "zone": "dominicain;" + index, "rang": sanctoral[new_date]["rang"]});
     }
     index = index + 1;
     new_date = date_string + "_" + index;
@@ -47,7 +47,7 @@ function resumes_du(office, date_string){
     var demain = lendemain_du(date_string);
     if (office == "vepres") {
       if (sanctoral[demain]["vepres_veille"]["oraison"]){
-        offices.push({"ligne1": sanctoral[demain]["titre"] + " (Veille)", "ligne2": sanctoral[demain]["sous_titre"] + " - " + sanctoral[demain]["rang"], "ligne3": "Office Franciscain",  "zone": "franciscain;v", "rang": sanctoral[demain]["rang"]});
+        offices.push({"ligne1": sanctoral[demain]["titre"] + " (Veille)", "ligne2": sanctoral[demain]["sous_titre"] + " - " + sanctoral[demain]["rang"], "ligne3": "Office dominicain",  "zone": "dominicain;v", "rang": sanctoral[demain]["rang"]});
       }
     }
   }
