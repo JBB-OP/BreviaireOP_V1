@@ -273,6 +273,13 @@ function update_office_class(office){
       $("#global").removeClass("office_vepres");
       $("#global").removeClass("office_lectures");
       break;
+    case "martyrologe":
+      $("#global").addClass("office_martyrologe");
+      $("#global").removeClass("office_laudes");
+      $("#global").removeClass("office_vepres");
+      $("#global").removeClass("office_complies");
+      $("#global").removeClass("office_lectures");
+      break;
     default:
       break;
   }
@@ -373,6 +380,42 @@ function update_office(scroll=0){
 		}
 	});
 }
+
+// If this is martyrologe, handle it specially (no API call needed)
+  if (office === 'martyrologe') {
+    console.log("Office is martyrologe, handling specially");
+    
+    // Use the async function to load saints data
+    if (typeof update_martyrologe_with_saints === 'function') {
+      update_martyrologe_with_saints();
+    } else {
+      console.log("update_martyrologe_with_saints function not available, using fallback");
+      
+      // Fallback to simple version
+      var martyrologe_data = {
+        "informations": {
+          "ligne1": "<h2>Martyrologe</h2>",
+          "couleur": "rouge",
+          "temps_liturgique": "default",
+          "semaine": "",
+          "degre": "",
+          "jour_liturgique_nom": "Martyrologe"
+        }
+      };
+      
+      var html_text = create_martyrologe_html(martyrologe_data["informations"], new Date(date));
+      
+      $(".office_content").each(function(){$(this).html(html_text.texte)});
+      $(".office_titre").each(function(){$(this).html(html_text.titre)});
+      $(".office_sommaire").each(function(){$(this).html(html_text.sommaire)});
+      $(".office_biographie").each(function(){$(this).html("")});
+      update_anchors();
+      update_liturgical_color(html_text.couleur);
+      update_office_class(office);
+    }
+    
+    return; // Exit early, no need for AJAX call
+  }
 
 function update_office_credits(){
   var texte_final = '<div class="office_text" id="office_text">';
